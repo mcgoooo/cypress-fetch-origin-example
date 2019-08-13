@@ -1,0 +1,23 @@
+<h1>
+  This is to show that cypress is removing the origin headers on post requests
+</h1>
+<h2>headers that the server received from the post</h2>
+<pre id="server-headers"></pre>
+<script>
+  fetch("/submit-form", {
+    method: "POST",
+    body: {},
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+    .then(res => res.json())
+    .then(response => {
+      document.getElementById("server-headers").innerHTML = JSON.stringify(
+        response,
+        null,
+        2
+      );
+    })
+    .catch(error => console.error("Error:", error));
+</script>
